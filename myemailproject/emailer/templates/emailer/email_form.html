@@ -1,0 +1,13 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" required>
+    
+    <label for="message">Message:</label>
+    <textarea name="message" required></textarea>
+    
+    <label for="recipients">Recipients (comma separated):</label>
+    <input type="text" name="recipients" required>
+
+    <button type="submit">Send Email</button>
+</form>

@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'emailer/css/styles.css' %}">
+    <title>Bulk Email Sender</title>
+    <style>
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bulk Email Sender</h1>
+
+        <!-- Error Messages Section -->
+        {% if error_messages %}
+            <div class="error-messages" style="color: red;">
+                <ul>
+                    {% for error in error_messages %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form id="emailForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="csv_file">Upload CSV File:</label>
+            <input type="file" name="csv_file" required>
+
+            <label for="subject">Email Subject:</label>
+            <input type="text" name="subject" placeholder="Enter email subject" required>
+
+            <label for="message">Email Message:</label>
+            <textarea name="message" rows="5" placeholder="Enter email message" required></textarea>
+
+            <button type="submit">Send Emails</button>
+        </form>
+        
+        <!-- Loader Section -->
+        <div id="loader" style="display:none;">
+            <div class="spinner"></div>
+            <p>Sending Emails: <span id="progress">0%</span></p>
+            <div style="background: #f3f3f3; border: 1px solid #ccc; width: 100%; height: 20px; border-radius: 5px;">
+                <div id="progressBar" style="background: #4caf50; height: 100%; width: 0%; border-radius: 5px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'emailer/js/scripts.js' %}"></script>
+    <!-- <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent default form submission
+
+            const formData = new FormData(this);
+            const loader = document.getElementById('loader');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progress');
+
+            loader.style.display = 'block';
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok');
+            }).then(data => {
+                let totalEmails = data.total; // Total emails from your view
+                let sentEmails = 0;
+
+                const interval = setInterval(() => {
+                    sentEmails += 1; // Simulate sending one email
+                    const percentage = Math.min((sentEmails / totalEmails) * 100, 100);
+                    progressBar.style.width = percentage + '%';
+                    progressText.textContent = Math.round(percentage) + '%';
+
+                    if (percentage >= 100) {
+                        clearInterval(interval);
+                        loader.style.display = 'none'; // Hide loader after completion
+                        alert('All emails sent!');
+
+                        // Refresh the page after a delay
+                        setTimeout(() => {
+                            location.reload(); // Reload the page
+                        }, 2000); // Adjust delay as needed
+                    }
+                }, 200); // Adjust the interval time as needed
+            }).catch(error => {
+                console.error('Error:', error);
+                loader.style.display = 'none';
+            });
+        });
+    </script> -->
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent default form submission
+    
+            const formData = new FormData(this);
+            const loader = document.getElementById('loader');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progress');
+    
+            loader.style.display = 'block';
+    
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok');
+            }).then(data => {
+                let totalEmails = data.total; // Total emails from your server response
+                let sentEmails = 0;
+    
+                const interval = setInterval(() => {
+                    // Simulate the sending process
+                    sentEmails += 1;
+                    const percentage = Math.min((sentEmails / totalEmails) * 100, 100);
+    
+                    progressBar.style.width = percentage + '%';
+                    progressText.textContent = Math.round(percentage) + '%';
+    
+                    // Update the progress every time the percentage changes.
+                    if (percentage >= 100) {
+                        clearInterval(interval);  // Clear the interval when finished
+                        loader.style.display = 'none'; // Hide loader after completion
+                        alert('All emails sent!');
+    
+                        // Refresh the page after a slight delay
+                        setTimeout(() => {
+                            location.reload(); // Reload the page
+                        }, 2000); // Adjust delay as needed
+                    }
+                }, 200); // Adjust the interval time for smoother updates
+    
+            }).catch(error => {
+                console.error('Error:', error);
+                loader.style.display = 'none';
+            });
+        });
+    </script>
+    
+</body>
+</html>
