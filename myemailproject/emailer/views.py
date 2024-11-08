@@ -37,7 +37,7 @@ def send_bulk_email_view(request):
                     send_mail(
                         subject,
                         message,
-                        'manish@videcreators.com',  # Your verified sender email
+                        'manishkumar222203@gmail.com',  # Your verified sender email
                         [email],
                         fail_silently=False,
                     )
