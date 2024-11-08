@@ -128,7 +128,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.videcreators.com'  # e.g., 'smtp.gmail.com'
 EMAIL_PORT = 587  # or 465 for SSL
 EMAIL_USE_TLS = True  # or False if using SSL
-EMAIL_HOST_USER = 'manish@videcreators.com'
-EMAIL_HOST_PASSWORD = 'Mannu_dalal12'
-DEFAULT_FROM_EMAIL = 'manish@videcreators.com'
+EMAIL_HOST_USER = 'manishkumar222203@gmail.com'
+EMAIL_HOST_PASSWORD = 'Manish@*******'
+DEFAULT_FROM_EMAIL = 'manishkumar222203@gmial.com'
 
