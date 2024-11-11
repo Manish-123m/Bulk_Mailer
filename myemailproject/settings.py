@@ -129,6 +129,6 @@ EMAIL_HOST = 'mail.videcreators.com'  # e.g., 'smtp.gmail.com'
 EMAIL_PORT = 587  # or 465 for SSL
 EMAIL_USE_TLS = True  # or False if using SSL
 EMAIL_HOST_USER = 'manishkumarmaurya9616@gmail.com'
-EMAIL_HOST_PASSWORD = 'Mann*****'
+EMAIL_HOST_PASSWORD = 'Mann****'
 DEFAULT_FROM_EMAIL = 'manishkumarmaurya9616@gmail.com'
 
