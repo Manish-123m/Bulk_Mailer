@@ -32,7 +32,7 @@ Redis (for Celery task queue)
 An SMTP server (e.g., Gmail, SendGrid, etc.)
 Steps to Install
 Clone the repository:
-git clone https://github.com/yourusername/bulk_mailer.git
+git clone https://github.com/Manish-123m/Bulk_Mailer
 cd bulk_mailer
 Create a virtual environment:
 python3 -m venv env
