@@ -68,20 +68,17 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'myemailproject.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -129,6 +126,6 @@ EMAIL_HOST = 'mail.videcreators.com'  # e.g., 'smtp.gmail.com'
 EMAIL_PORT = 587  # or 465 for SSL
 EMAIL_USE_TLS = True  # or False if using SSL
 EMAIL_HOST_USER = 'manishkumarmaurya9616@gmail.com'
-EMAIL_HOST_PASSWORD = 'Mann****'
+EMAIL_HOST_PASSWORD = 'M****'
 DEFAULT_FROM_EMAIL = 'manishkumarmaurya9616@gmail.com'
 
